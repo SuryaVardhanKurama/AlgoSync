@@ -21,7 +21,7 @@ function debounce(fn, ms = 800) {
 
 const LANGUAGES = [
   "python3", "java", "cpp", "nodejs", "c", "ruby", "go", "scala",
-  "bash", "sql", "pascal", "csharp", "php", "swift", "rust", "r",
+  "bash", "csharp", "php", "rust",
 ];
 
 function EditorPage() {

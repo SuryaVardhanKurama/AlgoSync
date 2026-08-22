@@ -55,8 +55,7 @@ app.post("/compile", async (req, res) => {
 
     const hasStderr =
       output &&
-      (typeof output === "object") &&
-      (output.stderr || output.error || (output.exitCode && output.exitCode !== 0));
+      (output.stderr || output.compile_output || (output.exitCode && output.exitCode !== 0));
 
     if (hasStderr) {
       try {
@@ -68,7 +67,7 @@ app.post("/compile", async (req, res) => {
 
         const userMsg = {
           role: "user",
-          content: `Language: ${language}\n\nCode:\n${code}\n\nCompiler output / error:\n${output.stderr || output.error || JSON.stringify(output)}\n\nPlease suggest a corrected version and briefly explain changes.`,
+          content: `Language: ${language}\n\nCode:\n${code}\n\nCompiler output / error:\n${output.stderr || output.compile_output || JSON.stringify(output)}\n\nPlease suggest a corrected version and briefly explain changes.`,
         };
 
         const aiSuggestion = await callAI({

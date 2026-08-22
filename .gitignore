@@ -37,3 +37,4 @@ frontend/coverage/
 # Misc
 *.pem
 *.key
+backend/backend.log

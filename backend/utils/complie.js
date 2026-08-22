@@ -11,7 +11,8 @@ const languageToId = {
   bash: 46,
   php: 68,
   rust: 94,
-  // Extend as needed
+  csharp: 51,
+  scala: 53,
 };
 
 async function compileCode(code, language) {
@@ -58,12 +59,12 @@ async function compileCode(code, language) {
 
     if (statusId > 2) {
       // Finished
-      return (
-        result.stdout ||
-        result.stderr ||
-        result.compile_output ||
-        "No output received"
-      );
+      return {
+        stdout: result.stdout || null,
+        stderr: result.stderr || null,
+        compile_output: result.compile_output || null,
+        exitCode: result.status?.id === 3 ? 0 : result.status?.id || null,
+      };
     }
 
     // Wait before next attempt

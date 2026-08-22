@@ -1,129 +1,99 @@
-> **“Coding is best done together, not alone.”**
+# AlgoSync
 
-# 🚀✨ AlgoSync
+A full-stack collaborative coding platform for competitive programmers to explore, solve, and discuss algorithmic problems in real-time.
 
-> _Collaborate, Solve, Bookmark, and Innovate — Sync your coding journey in real-time_
+## Features
 
-**AlgoSync** is a **collaborative coding platform** for competitive programmers to explore, solve, and discuss algorithmic problems — powered by **real-time collaboration**, **AI-assisted debugging**, and **personal bookmarks**.
+- **Real-Time Code Collaboration** — Join rooms, code together with live cursor sync via Socket.IO
+- **AI Code Assistant** — Get instant explanations, debugging help, and code fixes powered by Google Gemini
+- **Instant Compilation** — Run code in the browser across multiple languages (Python, Java, C++, C#, Go, Rust, and more)
+- **Whiteboard** — Collaborative system design canvas using tldraw
+- **Problem Library** — Browse and filter Codeforces problems by tag and difficulty
+- **Bookmarks** — Save problems for later with persistent storage
+- **User Profiles** — Showcase Codeforces and LeetCode stats
 
----
+## Tech Stack
 
-## 🧠 What is AlgoSync?
+**Backend:** Node.js, Express, Socket.IO, MongoDB, Mongoose, JWT Auth
 
-AlgoSync brings coders together. Whether you’re practicing DSA, debugging, or brainstorming, AlgoSync helps you **collaborate live**, **compile instantly**, and **get AI-powered insights** — all in one place.
+**Frontend:** React, CodeMirror, Socket.IO Client, tldraw, React Router, Axios
 
----
+**External APIs:** Google Gemini (AI), Judge0 via RapidAPI (Compilation), Codeforces API, LeetCode API
 
-## 🧩 Tech Stack
+## Getting Started
 
-![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/-Express-black?logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/-MongoDB-4EA94B?logo=mongodb&logoColor=white)
-![Mongoose](https://img.shields.io/badge/-Mongoose-AA2929?logo=mongoose&logoColor=white)
-![Socket.io](https://img.shields.io/badge/-Socket.io-black?logo=socketdotio)
-![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black)
-![OpenAI](https://img.shields.io/badge/-OpenAI-412991?logo=openai&logoColor=white)
-![JWT](https://img.shields.io/badge/-JWT-000000?logo=jsonwebtokens&logoColor=white)
-![Axios](https://img.shields.io/badge/-Axios-5A29E4?logo=axios&logoColor=white)
+### Prerequisites
 
----
+- Node.js v14+
+- MongoDB (local or Atlas)
+- API keys: Google Gemini, RapidAPI (Judge0)
 
-## 💡 Why AlgoSync?
-
-> In the world of competitive programming, problem-solving can feel isolated.  
-> AlgoSync turns it into a **shared, interactive experience** — where you **collaborate, learn, and grow together**.
-
-**Empower your learning** with:
-- 🧑‍💻 Live collaborative code rooms  
-- 🧠 AI code explanation & debugging  
-- 📘 Personalized bookmarks  
-- ⚡ Instant multi-language compilation  
-
----
-
-## 🌟 Key Features
-
-### 🔥 **Real-Time Code Collaboration (CodeRoom)**
-- Join rooms, code together, and see changes live using **Socket.IO**.
-- View multiple participants’ cursors and edits in real time.
-- Ideal for **pair programming**, **mock interviews**, or **teaching sessions**.
-
-### 🧠 **AI Code Assistant**
-- Integrated **OpenAI GPT-powered assistant**.
-- Explain complex code instantly.  
-- Debug or refactor with smart AI suggestions.  
-- Get instant hints and logic improvements while coding live.
-
-### ⚙️ **Instant Code Compilation**
-- Write and run code directly in the browser.
-- Supports multiple languages: **Python, C++, Java, Node.js**, and more.
-- Returns output and error messages instantly.
-
-### 🔖 **Bookmark & Organize**
-- Save favorite Codeforces problems.  
-- Organize your problem sets for easy revisiting.  
-- Persistent storage with MongoDB.
-
-### 🌐 **Codeforces Integration**
-- Fetch and filter Codeforces problems by tag or difficulty.  
-- View and solve directly within AlgoSync.
-
-### 🧍‍♂️ **User Profiles**
-- Build your coder profile.  
-- Track your rooms, activity, and bookmarked problems.
-
----
----
-
-## 🚀 Getting Started
-
-### 🔧 Prerequisites
-
-- Node.js (v14+)
-- npm or yarn
-- MongoDB (local or cloud)
-- OpenAI API Key
-
-### 📦 Installation
+### Installation
 
 ```bash
-git clone https://github.com/your-username/AlgoSync.git
-cd travel-buddy
+git clone https://github.com/SuryaVardhanKurama/AlgoSync.git
+cd AlgoSync
+```
 
-# Backend
+### Backend
+
+```bash
 cd backend
 npm install
+```
 
-#Create a .env file inside backend/:
+Create a `.env` file in `backend/`:
+
+```
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-OPENAI_API_KEY=your_openai_api_key
+GOOGLE_API_KEY=your_google_gemini_api_key
+RAPID_API_KEY=your_rapidapi_key
+```
 
+### Frontend
 
-# Frontend
+```bash
 cd ../frontend
 npm install
 ```
 
-### ▶️ Run Locally
-``` bash
-# Start Backend
-cd backend
-npm run dev
+### Run
 
-# Start Frontend
-cd ../frontend
+```bash
+# Terminal 1 — Backend
+cd backend
+npm start
+
+# Terminal 2 — Frontend
+cd frontend
 npm start
 ```
 
+The app will be available at `http://localhost:3000` with the backend on port `5000`.
 
-## 🌈 Final Thought
+## Project Structure
 
-AlgoSync transforms coding practice from a solo grind to a connected, collaborative experience.
+```
+AlgoSync/
+├── backend/
+│   ├── controllers/      # Route handlers (Auth, User, Bookmark, Problem, Chat)
+│   ├── middleware/        # JWT auth, file upload (multer)
+│   ├── models/           # Mongoose schemas (User, Bookmark, Problem, ChatMessage)
+│   ├── routers/          # Express route definitions
+│   ├── socket/           # Socket.IO event actions
+│   ├── utils/            # Codeforces API, Gemini AI, code compilation
+│   └── index.js          # Server entry point
+└── frontend/
+    ├── public/           # Static assets
+    └── src/
+        ├── components/   # Navbar, Footer, ProblemCard
+        ├── context/      # Auth context (JWT)
+        ├── pages/        # Home, Login, Signup, Problems, Bookmarks, Profile
+        └── Coderoom/     # Real-time editor, whiteboard, socket logic
+```
 
-Bookmark problems you love.
-Code together in real-time.
-Level up with friends — or make new ones.
+## License
 
-Your next breakthrough might just be a synced session away.
+ISC
