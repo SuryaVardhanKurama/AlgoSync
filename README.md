@@ -94,6 +94,3 @@ AlgoSync/
         └── Coderoom/     # Real-time editor, whiteboard, socket logic
 ```
 
-## License
-
-ISC
